@@ -1,0 +1,27 @@
+{
+  "name": "cognitive-vision-ocr",
+  "version": "0.0.1",
+  "description": "OCR using Microsoft Cognitive Vision",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calibr/node-cognitive-vision-ocr.git"
+  },
+  "keywords": [
+    "OCR",
+    "cognitive",
+    "vision"
+  ],
+  "author": "calibr <awcalibr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calibr/node-cognitive-vision-ocr/issues"
+  },
+  "homepage": "https://github.com/calibr/node-cognitive-vision-ocr#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
