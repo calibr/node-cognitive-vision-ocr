@@ -1,6 +1,6 @@
 {
   "name": "cognitive-vision-ocr",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "OCR using Microsoft Cognitive Vision",
   "main": "index.js",
   "scripts": {
