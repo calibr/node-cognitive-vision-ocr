@@ -102,18 +102,25 @@ function convertToGcloudFormat(cognitiveData, cx, cy) {
           poly[i] = rotateVertex(cx, cy, -cognitiveData.textAngle, vertex);
         }
         annotations.push({
-          poly,
+          boundingPoly: {
+            vertices: poly
+          },
           description: word.text
         });
       }
       fullText += "\n";
     }
   }
-  annotations.unshift({
-    poly: fullTextPoly,
-    description: fullText
-  })
-  return annotations;
+  if(fullTextPoly) {
+    annotations.unshift({
+      boundingPoly: {
+        vertices: fullTextPoly
+      },
+      locale: cognitiveData.language,
+      description: fullText
+    });
+  }
+  return annotations.length ? annotations : null;
 }
 
 
@@ -141,7 +148,16 @@ module.exports = function(params, cb) {
       if(err) {
         return reject(err);
       }
-      data = JSON.parse(data);
+      try {
+        data = JSON.parse(data);
+      }
+      catch(ex) {
+        return reject("Can't parse JSON response(" + data + ")");
+      }
+      if(res.statusCode !== 200) {
+        var err = new Error(data.message);
+        return reject(err);
+      }
       if(params.gcloud && params.imageSize) {
         // should return response like gcloud vision
         let cx = params.imageSize.width / 2;
