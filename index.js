@@ -125,8 +125,9 @@ function convertToGcloudFormat(cognitiveData, cx, cy) {
 
 
 module.exports = function(params, cb) {
+  params.location = params.location || 'westus'
   var requestParams = {
-    url: "https://api.projectoxford.ai/vision/v1.0/ocr",
+    url: "https://" + params.location + ".api.cognitive.microsoft.com/vision/v1.0/ocr",
     method: "POST",
     headers: {
       'Ocp-Apim-Subscription-Key': params.key
